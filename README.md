@@ -8,7 +8,15 @@ This section describes how to download genomic and transcriptome data from NCBI 
 With a version of conda (I'm using miniforge3), create an environment and install needed CLI tooling
 https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/download-and-install/
 
+Create the conda environment
+
 `conda create -n ncbi-cli`
+
+Activate the conda environment
+
+`conda activate ncbi-cli`
+
+Install needed NCBI CLI tooling
 
 `conda install ncbi-datasets-cli`
 
@@ -20,7 +28,7 @@ https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/download-and-in
 
 Once you have the download command, activate your ncbi-cli environment and donwload the data
 
-`conda activate ncbi-datasets-cli`
+`conda activate ncbi-cli`
 
 An example of the to-copy command from NCBI
 
