@@ -1,0 +1,16 @@
+How to download Python Dash
+
+Things to download:
+1. Python (if you don't already have it)
+2. Conda (again, if you don't already have it. If you downloaded the initial data using command prompt, you probably already have this too)
+3. Dash (in the command line, type pip install dash)
+
+Suggested things to download:
+4. Pandas (if you don't already have it. Type pip install pandas into the command line)
+4. JupyterLab (pip install jupyterlab in command line)
+5. Jupyter Notebook (pip install notebook in command line)
+
+To launch JupyterLab, type jupyter lab in command line. This will pull up your lab. 
+Using JupyterLab rather than Python itself to run Dash allows you to test everything out before committing. 
+I find that committing changes too often slows down my computer, so I prefer working in JupyterLab until I have a product that I'm satisfied with.
+
