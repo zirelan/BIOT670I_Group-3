@@ -41,9 +41,11 @@ def build_db(faa_path: str, prefix: str):
 def run_blast(tool: str, query_path: str, db_prefix: str, out_tsv: str):
     # tool is 'blastp' or 'blastx'
     subprocess.run([
-        tool, "-query", query_path, "-db", db_prefix,
+        tool,
+        "-query", query_path,
+        "-db", db_prefix,
         "-out", out_tsv,
-        "-outfmt", "6 qseqid aseqid pident length evalue bitscore qlen alen"
+        "-outfmt", "6 qseqid sseqid pident length evalue bitscore"
     ], check=True)
 
 # ------------- Header parsing ----------------
@@ -91,7 +93,7 @@ def parse_id_rich(header: str, default_label: str = ""):
         if species and species in tmp:
             tmp = tmp.replace(species, "")
         name = tmp.strip()
-        # collapse spaces -> underscores for compactness
+        # collapse spaces -> use underscores for compactness
         name = re.sub(r'\s+', '_', name).strip("_")
 
     # If everything is still empty, use defaults
@@ -100,7 +102,7 @@ def parse_id_rich(header: str, default_label: str = ""):
     if default_label and not name:
         name = default_label
 
-    # Safety: avoid commas which can make CSV messy
+    # to be safe avoid commas which can make CSV messy
     name = name.replace(",", " ")
     species = species.replace(",", " ")
 
@@ -112,25 +114,34 @@ def render_results(out_path: str, crop_label: str, crop_is_protein: bool, pident
         st.info("No hits found.")
         return
 
-    cols = ["qseqid","aseqid","pident","length","evalue","bitscore","qlen","alen"]
-    df = pd.read_csv(out_path, sep="\t", header=None, names=cols)
+    # EXACTLY the 6 columns we asked for above
+    cols = ["qseqid","sseqid","pident","length","evalue","bitscore"]
+    df = pd.read_csv(out_path, sep="\t", header=None, names=cols, engine="python")
 
-    # numeric coerce
-    for c in ["pident","length","evalue","bitscore","qlen","alen"]:
+    # Safety check: if the file didn't parse to 6 cols, show the first raw line
+    if df.shape[1] != len(cols):
+        st.error(f"Unexpected BLAST output shape: got {df.shape[1]} columns, expected {len(cols)}.")
+        with open(out_path, "r") as fh:
+            first = fh.readline().strip()
+        st.write("First raw line from BLAST:")
+        st.code(first or "(empty)", language="text")
+        return
+
+    # Coerce numerics
+    for c in ["pident","length","evalue","bitscore"]:
         df[c] = pd.to_numeric(df[c], errors="coerce")
 
-    # Labels (kept as triage hints)
+    # Triage labels (optional visual hint)
     df["status"] = "Hits"
     df.loc[(df["pident"]>=80), "status"] = "High"
     df.loc[(df["pident"]>=50) & (df["status"]!="High"), "status"] = "Medium"
 
-    # Parse rich IDs
+    # Parse richer IDs from headers to show crop/allergen name & species
     crop_parsed = df["qseqid"].apply(lambda s: parse_id_rich(str(s), default_label=crop_label))
-    all_parsed  = df["aseqid"].apply(lambda s: parse_id_rich(str(s), default_label="Allergen"))
+    all_parsed  = df["sseqid"].apply(lambda s: parse_id_rich(str(s), default_label="Allergen"))
     c_acc, c_sp, c_name = zip(*crop_parsed)
-    a_acc, a_sp, a_gene  = zip(*all_parsed)
+    a_acc, a_sp, a_gene = zip(*all_parsed)
 
-    # Columns
     df.insert(0, "crop_acc", c_acc)
     df.insert(1, "crop_species", c_sp)
     df.insert(2, "crop_name", c_name)
@@ -138,27 +149,31 @@ def render_results(out_path: str, crop_label: str, crop_is_protein: bool, pident
     df.insert(4, "allergen_species", a_sp)
     df.insert(5, "allergen_gene", a_gene)
 
-    # E-value as a scientific notation string
+    # E-value as scientific notation string
     df["evalue_sci"] = df["evalue"].apply(lambda x: f"{x:.2e}" if pd.notna(x) else "")
 
-    # --- Filters before running: only pident ---
-    mask = (df["pident"] >= pident_min)
-    fdf = df[mask].copy()
+    # Only filter: % identity
+    fdf = df[df["pident"] >= pident_min].copy()
 
-    # Preferred column order
+    # Sort for readability
+    fdf = fdf.sort_values(by=["pident","evalue"], ascending=[False, True])
+
     display_cols = [
         "crop_acc","crop_species","crop_name",
         "allergen_acc","allergen_species","allergen_gene",
-        "pident","length","evalue_sci","bitscore","qlen","alen","status"
+        "pident","length","evalue_sci","bitscore","status"
     ]
 
     st.subheader("Results")
     st.write(f"Total hits: {len(df)} | After %identity filter (≥{pident_min}%): {len(fdf)}")
     st.dataframe(fdf[display_cols], use_container_width=True)
-    st.download_button("Download filtered results (CSV)",
-                       fdf[display_cols].to_csv(index=False),
-                       file_name="blast_results_filtered.csv",
-                       mime="text/csv")
+
+    st.download_button(
+        "Download filtered results (CSV)",
+        fdf[display_cols].to_csv(index=False),
+        file_name="blast_results_filtered.csv",
+        mime="text/csv"
+    )
 
     st.subheader("Summary by status")
     st.write(fdf["status"].value_counts().rename_axis("status").reset_index(name="count"))
