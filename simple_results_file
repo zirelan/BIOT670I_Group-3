@@ -1,0 +1,17 @@
+import streamlit as st
+import pandas as pd
+
+st.title("Simplified Results Viewer")
+
+uploaded = st.file_uploader("Upload your filtered results (CSV)", type="csv")
+
+if uploaded:
+    df = pd.read_csv(uploaded)
+    st.subheader("Simplified Summary")
+
+    # Example: Show only high-level info
+    summary = df.groupby("status").size().reset_index(name="count")
+    st.table(summary)
+
+    st.write("Proteins detected with high similarity to allergens:")
+    st.write(df[df["status"] == "High"][["crop_species", "crop_protein", "allergen_species", "allergen_gene"]])
