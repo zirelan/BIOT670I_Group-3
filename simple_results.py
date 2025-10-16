@@ -96,7 +96,7 @@ if uploaded:
     - Points **farther to the right** have **higher sequence similarity** (more identical amino acids or bases).
     - Points **higher up** have **stronger alignments** (higher bit scores mean better BLAST matches).
     - **Larger bubbles** represent **longer alignments** — meaning more of the sequence was compared.
-    - **Colors** indicate different crop species.
+    - **Colors** indicate different allergenic proteins.
     """)
 
     # --- Bubble Chart ---
