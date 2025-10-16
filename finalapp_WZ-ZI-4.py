@@ -243,7 +243,7 @@ def render_results(out_path: str, crop_label: str, crop_is_protein: bool,
             "pident","length","evalue_sci","bitscore","status"
         ]
         headers = [
-            "Crop accession","Crop gene","Crop protein",
+            "Crop protein accession","Crop gene","Crop protein",
             "Allergen accession","Allergen species","Allergen protein",
             "% identity","Alignment length","E-value","Bitscore","Status"
         ]
