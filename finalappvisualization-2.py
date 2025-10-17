@@ -1,4 +1,6 @@
-# in your main code, add st.markdown("[View Simplified Results](simple_results)") at the end, then create a new python file called simple_results and add this:
+#In your main code, add st.markdown("[View Simplified Results](simple_results)") at the end
+#Then create a new folder named pages in the same directory as your main code
+#Then create a new python file called simple_results in the pages folder and add this to the file:
 
 import streamlit as st
 import pandas as pd
