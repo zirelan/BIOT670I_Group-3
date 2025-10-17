@@ -395,4 +395,4 @@ with tab_x:
 
 st.markdown("---")
 st.caption("Tip: Use headers like `>Accession|Species|GeneOrDescription`. If your query headers lack name/species, fill the optional crop label above.")
-st.markdown("[View Simplified Results](simple_results.py)")
+# st.markdown("[View Simplified Results](simple_results.py)")
