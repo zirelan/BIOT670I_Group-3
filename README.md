@@ -3,11 +3,17 @@ APP TITLE is a bioinformatics tool designed to identify potential allergens from
 
 
 ## Set-up
-To clone this repository, ensure `git` is installed on your machine and run:
+To clone this repository, verify `git` is installed on your machine and run:
 
 `git clone https://github.com/zirelan/BIOT670I_Group-3.git`
 
-It is recommended to use a version of conda to install needed tools in an isolated environment.
+### Required tools
+It is recommended to use a version of conda to install needed tools in an isolated environment. Required tools and packages are:
+  - python3.12
+  - blast
+  - streamlit
+  - pandas
+  - plotly
 
 If you choose to use conda, navigate to the cloned repository directory `BIOT670I_Group-3` and run the following to create an environment for the application:
 
@@ -18,7 +24,7 @@ Once the environment is created successfully, you now have all tools required to
 
 ## Using the Application
 ### Launch the application
-To start the application, navigate to the cloned repository directory `BIOT670I_Group-3` and run the following (with the conda environment active):
+To start the application, navigate to the cloned repository directory `BIOT670I_Group-3` and run the following (if needed: activate conda environment):
 
 `conda activate <env-name>`
 
