@@ -46,6 +46,8 @@ For BLASTx, users can paste FASTA formatted sequence(s) to run against an allerg
 
 The results viewer requires a csv file produced by the detection application. This should be downloaded and uploaded on the results viewer page.
 
+### Detailed User Guide
+Navigate to the [application guide](README_application-guide.md) for a detailed walkthrough of how to use this application.
 
 ## Appendix
 
@@ -61,9 +63,10 @@ Visit the following dropbox to download peanut, soybean, or sesame query/crop FA
 [Crop Protein and CDS FASTAs](https://www.dropbox.com/scl/fo/bwcl29pyo41evatbbkpgm/ALsCv_aGQWCRlqEq1wBAut8?rlkey=sclcidm77ryiwx2y14eh2v1n1&st=31ti2znf&dl=0)
 
 
-
-
 ### Protein database
 Visit the following dropbox to download organsim specific allergenic protein FASTAs or compiled peanut, soybean, and sesame allergens.
 
 [Protein Databases](https://www.dropbox.com/scl/fo/xylt6z1774zg0zedh2ns0/AE4oXtg07LBp8Ac35QVxt7Y?rlkey=qu3g93llnur4yg3um20r6shua&st=7oqbgv1y&dl=0)
+
+## Authors
+Zach Irelan | Wahaj Zuberi | Amelia Bradford | Laurie Orell | Mustafa Talha Sigindere
