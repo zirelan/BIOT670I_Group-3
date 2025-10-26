@@ -118,6 +118,8 @@ if uploaded:
     - Points **higher up** have **stronger alignments** (higher bit scores mean better BLAST matches).
     - **Larger bubbles** represent **longer alignments** — meaning more of the sequence was compared.
     - **Colors** indicate different allergen accession numbers.
+    - The allergens in the bubble legend can be selected to hide or show their matches.
+    - The allergen counts legend colors are not the same as the bubble legend colors.
     """)
 
     required_cols = {"Percent Identical", "Bit Score"}
@@ -138,7 +140,7 @@ if uploaded:
                 size="Length",
                 color="Allergen Accession Number",
                 hover_data=["Allergen Species", "Crop Protein", "Allergen Protein"],
-                title="Allergen Match Strength by Crop Species",
+                title="Allergen Match Strength to Crop Query Sequences",
                 size_max=30,
             )
             st.plotly_chart(fig, use_container_width=True)
