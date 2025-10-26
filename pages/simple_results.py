@@ -118,6 +118,7 @@ if uploaded:
     - Points **higher up** have **stronger alignments** (higher bit scores mean better BLAST matches).
     - **Larger bubbles** represent **longer alignments** — meaning more of the sequence was compared.
     - **Colors** indicate different allergen accession numbers.
+    - Hover over bubbles for additional query and protein sequence metadata of a hit.
     - The allergens in the bubble legend can be selected to hide or show their matches.
     - The allergen counts legend colors are not the same as the bubble legend colors.
     """)
