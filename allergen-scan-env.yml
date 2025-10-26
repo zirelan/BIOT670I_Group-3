@@ -1,4 +1,4 @@
-name: allergen-env
+name: allergen-scan-env
 channels:
   - conda-forge
   - bioconda
