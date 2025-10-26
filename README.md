@@ -1,5 +1,5 @@
-# App Title
-APP TITLE is a bioinformatics tool designed to identify potential allergens from protein or coding sequence data using BLASTp or BLASTx. The tool includes an application providing a user-interface to conduct BLASTp or BLASTx searches against a custom allergenic database. Results can be exported in csv format and uploaded into the results viewer for a more detailed analysis.
+# Welcome
+AllergenScan is a bioinformatics tool designed to identify potential allergens from protein or coding sequence data using BLASTp or BLASTx. The tool includes an application providing a user-interface to conduct BLASTp or BLASTx searches against a custom allergenic database. Results can be exported in csv format and uploaded into the results viewer for a more detailed analysis.
 
 
 ## Set-up
@@ -17,7 +17,7 @@ It is recommended to use a version of conda to install needed tools in an isolat
 
 If you choose to use conda, navigate to the cloned repository directory `BIOT670I_Group-3` and run the following to create an environment for the application:
 
-`conda env create -f <file-name.yml>`
+`conda env create -f allergen-scan-env.yml`
 
 Once the environment is created successfully, you now have all tools required to run the detection and visualization application.
 
@@ -26,9 +26,9 @@ Once the environment is created successfully, you now have all tools required to
 ### Launch the application
 To start the application, navigate to the cloned repository directory `BIOT670I_Group-3` and run the following (if needed: activate conda environment):
 
-`conda activate <env-name>`
+`conda activate allergen-scan-env`
 
-`streamlit run <final-app.py`
+`streamlit run allergen-scan.py`
 
 
 ### Navigation
