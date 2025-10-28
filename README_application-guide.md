@@ -79,5 +79,4 @@ All hits with a Status classification of High will be displayed in a scrollable 
 
 BLAST hits within the bubble chart are plotted against bit score and percent identity. As points move up and right (having higher bit score and percent identity), the hit becomes more significant. Clusters of hits in the top right strongly suggest sequence similarity to an allergenic protein. The legend on the right has selectable allergen accessions to filter out/in query sequence matches to that allergen. The counts table to the right depicts how many matches each allergenic accession had to the query sequences.
 
-<img width="1885" height="659" alt="image" src="https://github.com/user-attachments/assets/d0d1a655-d0cd-4664-94cd-36340342aa0e" />
-
+<img width="1394" height="692" alt="image" src="https://github.com/user-attachments/assets/9f2d74f5-760b-41f9-bc41-c0f01d76c949" />
