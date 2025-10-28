@@ -147,18 +147,17 @@ if uploaded:
             st.plotly_chart(fig, use_container_width=True)
 
         # --- Build color mapping from Plotly figure ---
-        # --- Build color mapping from Plotly figure ---
         color_map = {}
-        if "Allergen Accession Number" in filtered_df.columns:
+        #    if "Allergen Accession Number" in filtered_df.columns:
             # Get the color sequence actually used by Plotly Express
-            color_sequence = fig.layout.colorway or px.colors.qualitative.Pastel
+        #    color_sequence = fig.layout.colorway or px.colors.qualitative.Pastel
 
             # Get the unique allergen values (same order as Plotly uses internally)
-            allergen_values = filtered_df["Allergen Accession Number"].dropna().unique()
+        #    allergen_values = filtered_df["Allergen Accession Number"].dropna().unique()
 
             # Assign each allergen its matching color in order
-            for i, allergen in enumerate(allergen_values):
-                color_map[allergen] = color_sequence[i % len(color_sequence)]
+        #    for i, allergen in enumerate(allergen_values):
+        #        color_map[allergen] = color_sequence[i % len(color_sequence)]
 
         with col2:
             st.markdown("**Allergen Accession Counts**")
