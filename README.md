@@ -64,7 +64,7 @@ Visit the following dropbox to download peanut, soybean, or sesame query/crop FA
 
 
 ### Protein database
-Visit the following dropbox to download organsim specific allergenic protein FASTAs or compiled peanut, soybean, and sesame allergens.
+Visit the following dropbox to download organsim specific allergenic protein FASTAs or compiled peanut, soybean, wheat, and sesame allergens.
 
 [Protein Databases](https://www.dropbox.com/scl/fo/xylt6z1774zg0zedh2ns0/AE4oXtg07LBp8Ac35QVxt7Y?rlkey=qu3g93llnur4yg3um20r6shua&st=7oqbgv1y&dl=0)
 
