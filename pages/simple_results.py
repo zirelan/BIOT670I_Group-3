@@ -170,14 +170,8 @@ if uploaded:
             count_df.columns = ["Allergen Accession Number", "Count"]
             count_df["Color"] = count_df["Allergen Accession Number"].map(color_map)
 
-            def color_box_html(color):
-                if not color:
-                    return ""
-                return f'<div style="display:inline-block;width:15px;height:15px;background-color:{color};border-radius:3px;margin-right:6px;border:1px solid #ccc;"></div>'
+            count_df["Allergen"] = count_df["Allergen Accession Number"]
 
-            count_df["Allergen"] = count_df.apply(
-                lambda row: f"{color_box_html(row['Color'])}{row['Allergen Accession Number']}", axis=1
-            )
 
             st.markdown(
                 count_df[["Allergen", "Count"]]
